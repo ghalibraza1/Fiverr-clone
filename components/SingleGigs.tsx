@@ -8,18 +8,19 @@ import {
   Alert,
   Modal,
   ScrollView,
+  SafeAreaView,
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import ProfilePage from "@/components/Profilepage";
 import { useNavigation } from "@react-navigation/native";
- // Adjust import as needed
-
+import { SafeAreaProvider } from "react-native-safe-area-context";
+// Adjust import as needed
 
 export default function SingleGigPage() {
   const [modalVisible, setModalVisible] = useState(false);
   const [showFullDescription, setShowFullDescription] = useState(false);
   const [selectedTab, setSelectedTab] = useState("Tab1");
-    const navigation=useNavigation()
+  const navigation = useNavigation();
 
   const gig = {
     title: "Develop a cross-platform app in React Native",
@@ -47,17 +48,137 @@ export default function SingleGigPage() {
   const renderTabContent = () => {
     switch (selectedTab) {
       case "Tab1":
-        return <Text style={styles.tabContent}>Content for $400 Layout</Text>;
-      case "Tab2":
-        return <Text style={styles.tabContent}>Content for $200 Layout</Text>;
+        return (
+          <ScrollView>
+            <View style={styles.tabContent}>
+                {/* Heading */}
+                <Text style={styles.heading}>A Beast Mode App</Text>
+                <Text style={styles.subheading}>
+                    End-to-end app with up to 10 dynamic screens, custom UI/UX for cross-platform
+                </Text>
+    
+                {/* Feature List */}
+                <View style={styles.features}>
+                    <View style={styles.featureRow}>
+                        <Text style={styles.featureLabel}>Revisions:</Text>
+                        <Text style={styles.featureValue}>7</Text>
+                    </View>
+                    <View style={styles.featureRow}>
+                        <Text style={styles.featureLabel}>Delivery Days:</Text>
+                        <Text style={styles.featureValue}>30</Text>
+                    </View>
+                    <View style={styles.featureRow}>
+                        <Text style={styles.featureLabel}>Functional Android App:</Text>
+                        <Text style={styles.tick}>✔</Text>
+                    </View>
+                    <View style={styles.featureRow}>
+                        <Text style={styles.featureLabel}>Functional iOS App:</Text>
+                        <Text style={styles.tick}>✔</Text>
+                    </View>
+                    <View style={styles.featureRow}>
+                        <Text style={styles.featureLabel}>App Design:</Text>
+                        <Text style={styles.tick}>✔</Text>
+                    </View>
+                    <View style={styles.featureRow}>
+                        <Text style={styles.featureLabel}>App Submission:</Text>
+                        <Text style={styles.tick}>✔</Text>
+                    </View>
+                    <View style={styles.featureRow}>
+                        <Text style={styles.featureLabel}>Splash Screen:</Text>
+                        <Text style={styles.tick}>✔</Text>
+                    </View>
+                </View>
+    
+                {/* Express Delivery */}
+                <View style={styles.expressDelivery}>
+                    <Text style={styles.expressLabel}>Express Delivery</Text>
+                    <Text style={styles.expressPrice}>+ $100</Text>
+                </View>
+            </View>
+            </ScrollView>
+        );
+        case "Tab2":
+          return (
+              <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+                  {/* Heading */}
+                  <Text style={styles.heading}>A Balanced Mode App</Text>
+                  <Text style={styles.subheading}>
+                      End-to-end app with up to 7 dynamic screens, custom UI/UX for cross-platform
+                  </Text>
+      
+                  {/* Feature List */}
+                  <View style={styles.features}>
+                      <View style={styles.featureRow}>
+                          <Text style={styles.featureLabel}>Revisions:</Text>
+                          <Text style={styles.featureValue}>5</Text>
+                      </View>
+                      <View style={styles.featureRow}>
+                          <Text style={styles.featureLabel}>Delivery Days:</Text>
+                          <Text style={styles.featureValue}>20</Text>
+                      </View>
+                      <View style={styles.featureRow}>
+                          <Text style={styles.featureLabel}>Functional Android App:</Text>
+                          <Text style={styles.tick}>✔</Text>
+                      </View>
+                      <View style={styles.featureRow}>
+                          <Text style={styles.featureLabel}>App Design:</Text>
+                          <Text style={styles.tick}>✔</Text>
+                      </View>
+                      <View style={styles.featureRow}>
+                          <Text style={styles.featureLabel}>Splash Screen:</Text>
+                          <Text style={styles.tick}>✔</Text>
+                      </View>
+                  </View>
+      
+                  {/* Express Delivery */}
+                  <View style={styles.expressDelivery}>
+                      <Text style={styles.expressLabel}>Express Delivery</Text>
+                      <Text style={styles.expressPrice}>+ $50</Text>
+                  </View>
+              </ScrollView>
+          );
+      
       case "Tab3":
-        return <Text style={styles.tabContent}>Content for $100 Layout</Text>;
+          return (
+              <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+                  {/* Heading */}
+                  <Text style={styles.heading}>A Starter Mode App</Text>
+                  <Text style={styles.subheading}>
+                      Basic app with up to 3 dynamic screens, standard UI/UX for cross-platform
+                  </Text>
+      
+                  {/* Feature List */}
+                  <View style={styles.features}>
+                      <View style={styles.featureRow}>
+                          <Text style={styles.featureLabel}>Revisions:</Text>
+                          <Text style={styles.featureValue}>3</Text>
+                      </View>
+                      <View style={styles.featureRow}>
+                          <Text style={styles.featureLabel}>Delivery Days:</Text>
+                          <Text style={styles.featureValue}>10</Text>
+                      </View>
+                      <View style={styles.featureRow}>
+                          <Text style={styles.featureLabel}>App Design:</Text>
+                          <Text style={styles.tick}>✔</Text>
+                      </View>
+                  </View>
+      
+                  {/* Express Delivery */}
+                  <View style={styles.expressDelivery}>
+                      <Text style={styles.expressLabel}>Express Delivery</Text>
+                      <Text style={styles.expressPrice}>+ $25</Text>
+                  </View>
+              </ScrollView>
+          );
+      
       default:
         return <Text style={styles.tabContent}>Please select a tab</Text>;
     }
   };
 
   return (
+    <SafeAreaView>
+      <SafeAreaProvider>
     <ScrollView style={styles.container}>
       {/* Gig Image */}
       <View style={styles.imageContainer}>
@@ -201,7 +322,15 @@ export default function SingleGigPage() {
 
       {/* Render content based on selected tab */}
       {renderTabContent()}
+    {/* </ScrollView>
+    <ScrollView> */}
+ <View>
+  <Text>Tab 1 Content</Text>
+ </View>
     </ScrollView>
+    </SafeAreaProvider>
+    </SafeAreaView>
+    
   );
 }
 
@@ -355,7 +484,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
     textDecorationLine: "underline",
   },
-  
+
   tabContainer: {
     flexDirection: "row",
     justifyContent: "space-around",
@@ -385,5 +514,111 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: "center",
     marginTop: 20,
+  },
+  // tabContent: {
+  //   padding: 16,
+  //   backgroundColor: '#ffffff',
+//},
+heading: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: 'white',
+    marginBottom: 8,
+},
+subheading: {
+    fontSize: 16,
+    color: 'white',
+    marginBottom: 24,
+},
+features: {
+    marginBottom: 24,
+},
+featureRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: 8,
+    borderBottomWidth: 1,
+    borderBottomColor: '#f0f0f0',
+},
+featureLabel: {
+    fontSize: 14,
+    color: '#404145',
+},
+featureValue: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: 'white',
+},
+tick: {
+    fontSize: 16,
+    color: '#1dbf73', // Fiverr green
+    fontWeight: 'bold',
+},
+expressDelivery: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 12,
+    borderWidth: 1,
+    borderColor: '#e4e5e7',
+    borderRadius: 8,
+    backgroundColor: '#f9f9f9',
+},
+expressLabel: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#404145',
+},
+expressPrice: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#1dbf73', // Fiverr green
+},
+  // tabContent: {
+  //   padding: 16,
+  //   backgroundColor: "#f9f9f9",
+  // },
+  // heading: {
+  //   fontSize: 20,
+  //   fontWeight: "bold",
+  //   marginBottom: 8,
+  // },
+  // subheading: {
+  //   fontSize: 16,
+  //   marginBottom: 16,
+  //   color: "#555",
+  // },
+  // features: {
+  //   marginBottom: 16,
+  // },
+  feature: {
+    fontSize: 14,
+    marginVertical: 4,
+  },
+  value: {
+    fontWeight: "bold",
+  },
+  // tick: {
+  //   color: "green",
+  //   fontWeight: "bold",
+  // },
+  // expressDelivery: {
+  //   flexDirection: "row",
+  //   justifyContent: "space-between",
+  //   alignItems: "center",
+  //   padding: 8,
+  //   borderWidth: 1,
+  //   borderColor: "#ccc",
+  //   borderRadius: 4,
+  //   backgroundColor: "#fff",
+  // },
+  dotBox: {
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  extraPrice: {
+    fontSize: 16,
+    color: "red",
   },
 });

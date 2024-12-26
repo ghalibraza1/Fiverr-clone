@@ -186,7 +186,7 @@ export default function ProfilePage() {
 
 const styles = StyleSheet.create({
   scrollContainer: {
-    flex: 1,
+    //flex: 1,
     backgroundColor: "#f0f0f0",
   },
   contentContainer: {

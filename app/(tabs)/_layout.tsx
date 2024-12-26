@@ -21,6 +21,9 @@ import EarningDetails from "@/components/EarningDetails";
 import ShareGigPage from "@/components/ShareGigPage";
 import ProfilePage from "@/components/Profilepage";
 import SingleGigs from "@/components/SingleGigs";
+import ManageGigs from "@/components/ManageGigs";
+import Preferences from "@/components/Preferences";
+import AccountPage from "@/components/AccountPage";
 
 // Create Stack Navigator
 const Stack = createStackNavigator();
@@ -175,6 +178,21 @@ export default function RootLayout() {
         name="ProfilePage"
         component={ProfilePage} // Import your ProfileScreen here
         options={{ title: "Profile Page" }}
+      />
+      <Stack.Screen
+        name="ManageGigs"
+        component={ManageGigs} // Import your ProfileScreen here
+        options={{ title: "ManageGigs" }}
+      />
+      <Stack.Screen
+        name="Preferences"
+        component={Preferences} // Import your ProfileScreen here
+        options={{ title: "Preferences" }}
+      />
+      <Stack.Screen
+        name="AccountPage"
+        component={AccountPage} // Import your ProfileScreen here
+        options={{ title: "AccountPage" }}
       />
     </Stack.Navigator>
   );

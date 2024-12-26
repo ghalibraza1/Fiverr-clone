@@ -11,16 +11,16 @@ import {
 import React, { useState } from "react";
 import { Ionicons, MaterialIcons, Feather } from "@expo/vector-icons"; // Import Icons
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import ShareGigPage from "@/components/ShareGigPage";
 import ProfilePage from "@/components/Profilepage";
-
+import Preferences from "@/components/Preferences";
+import AccountPage from "@/components/AccountPage";
 export default function Profile() {
-  
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
-  const navigation=useNavigation()
+  const navigation = useNavigation();
   // Dynamic styles for theme switching
   const dynamicStyles = {
     container: {
@@ -100,9 +100,11 @@ export default function Profile() {
         </View>
 
         {/* Selling Section */}
-        
+
         <ScrollView>
-          <Text style={[styles.sellingHeading, dynamicStyles.text]}>Selling</Text>
+          <Text style={[styles.sellingHeading, dynamicStyles.text]}>
+            Selling
+          </Text>
 
           {/* Buttons with Icons */}
           <TouchableOpacity
@@ -115,7 +117,7 @@ export default function Profile() {
               color={isEnabled ? "#fff" : "#000"}
               style={styles.icon}
             />
-            <Text   style={[styles.buttonText, dynamicStyles.text]}>Earning</Text>
+            <Text style={[styles.buttonText, dynamicStyles.text]}>Earning</Text>
             <MaterialIcons
               name="keyboard-arrow-right"
               size={24}
@@ -140,8 +142,10 @@ export default function Profile() {
             />
           </TouchableOpacity>
 
-          <TouchableOpacity style={dynamicStyles.buttonBox} 
-          onPress={() => navigation.navigate("ShareGigPage")}>
+          <TouchableOpacity
+            style={dynamicStyles.buttonBox}
+            onPress={() => navigation.navigate("ShareGigPage")}
+          >
             <MaterialIcons
               name="volume-up"
               size={24}
@@ -158,7 +162,10 @@ export default function Profile() {
             />
           </TouchableOpacity>
 
-          <TouchableOpacity style={dynamicStyles.buttonBox}>
+          <TouchableOpacity
+            style={dynamicStyles.buttonBox}
+            onPress={() => navigation.navigate("ManageGigs")}
+          >
             <Feather
               name="list"
               size={24}
@@ -175,8 +182,10 @@ export default function Profile() {
             />
           </TouchableOpacity>
 
-          <TouchableOpacity style={dynamicStyles.buttonBox} 
-           onPress={() => navigation.navigate("ProfilePage") }                                               >
+          <TouchableOpacity
+            style={dynamicStyles.buttonBox}
+            onPress={() => navigation.navigate("ProfilePage")}
+          >
             <Ionicons
               name="person-outline"
               size={24}
@@ -226,11 +235,13 @@ export default function Profile() {
               color={isEnabled ? "#fff" : "#000"}
             />
           </TouchableOpacity>
-        
 
           {/* Settings Section */}
           <Text style={dynamicStyles.sectionHeading}>Settings</Text>
-          <TouchableOpacity style={dynamicStyles.buttonBox}>
+          <TouchableOpacity
+            style={dynamicStyles.buttonBox}
+            onPress={() => navigation.navigate("Preferences")}
+          >
             <Ionicons
               name="settings-outline"
               size={24}
@@ -247,7 +258,10 @@ export default function Profile() {
             />
           </TouchableOpacity>
 
-          <TouchableOpacity style={dynamicStyles.buttonBox}>
+          <TouchableOpacity
+            style={dynamicStyles.buttonBox}
+            onPress={() => navigation.navigate("AccountPage")}
+          >
             <Ionicons
               name="person-circle-outline"
               size={24}
